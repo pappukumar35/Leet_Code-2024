@@ -1,0 +1,38 @@
+package Sepetember;
+public class K_th_Smallest_in_Lexicographical_Order{
+     public int findKthNumber(int n, int k) {
+          k = k-1;    
+          int curr = 1; 
+          while(k>0)
+          {
+           int iteration = getCount(n, curr, curr+1);
+           if(iteration<=k) 
+           {
+             curr++;
+             k = k - iteration;  
+           }
+           else
+           {
+              curr *= 10;
+              k = k-1;
+           }
+          }
+         return curr;
+          }
+      
+          public int getCount(int n, long tree1, long tree2)
+          {
+            int iteration = 0; 
+            while(tree1<=n)
+            {
+             iteration += Math.min(n+1, tree2)-tree1;
+             tree1 *=10;
+             tree2 *=10;
+            }
+      
+            return iteration;  
+          }
+     public static void main(String args[]){
+
+     }
+}
